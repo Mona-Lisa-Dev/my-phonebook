@@ -47,7 +47,9 @@ const signup = async (req, res, next) => {
     return res.status(HttpCode.CREATED).json({
       status: 'success',
       code: HttpCode.CREATED,
-      data: { id, name, email, subscription, avatarURL },
+      data: {
+        user: { id, name, email, subscription, avatarURL },
+      },
     });
   } catch (error) {
     next(error);

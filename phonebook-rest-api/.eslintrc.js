@@ -10,6 +10,7 @@ module.exports = {
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 12,
+    requireConfigFile: false,
   },
   rules: {
     // 'comma-dangle': 'off',
