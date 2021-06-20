@@ -1,0 +1,46 @@
+.ThemeButton {
+  display: flex;
+  height: 50px;
+
+  border: 2px solid #07c9eb;
+  padding: 10px;
+  margin-left: 10px;
+
+  //   border: none;
+  outline: none;
+
+  border-radius: 8px;
+  background-image: linear-gradient(
+    120deg,
+    rgba(35, 57, 135, 0.7) 0%,
+    rgba(66, 159, 71, 0.7) 100%
+  );
+
+  box-shadow: 7px 7px 13px 0px rgba(0, 0, 0, 0.38);
+
+  overflow: hidden;
+  cursor: pointer;
+
+  svg {
+    max-width: 30px;
+    height: auto;
+    transition: all 0.3s linear;
+    fill: white;
+
+    &.lightTheme:first-child {
+      transform: translateY(0);
+    }
+
+    &.darkTheme:first-child {
+      transform: translateY(100px);
+    }
+
+    &.lightTheme:nth-child(2) {
+      transform: translateY(-100px);
+    }
+
+    &.darkTheme:nth-child(2) {
+      transform: translateY(0);
+    }
+  }
+}

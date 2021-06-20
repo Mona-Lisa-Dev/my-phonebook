@@ -11,8 +11,8 @@ import * as authActions from 'redux/auth/auth-actions';
 import styles from './LoginPage.module.scss';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('bnm@mail.com'); // очистить
-  const [password, setPassword] = useState('1234567'); // очистить
+  const [email, setEmail] = useState('elena.hlihan@gmail.com'); //todo очистить
+  const [password, setPassword] = useState('12345678'); //todo очистить
 
   const error = useSelector(getErrorLogin);
   const isLoadingUser = useSelector(getLoadingUser);

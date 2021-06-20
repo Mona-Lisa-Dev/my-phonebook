@@ -14,7 +14,7 @@ import {
   getCurrentUserDataError,
 } from './auth-actions';
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+axios.defaults.baseURL = 'https://my-phonebook-rest-api.herokuapp.com/api';
 
 const token = {
   set(token) {
@@ -31,10 +31,10 @@ const signUp = payload => async dispatch => {
   try {
     const { data } = await axios.post('/users/signup', payload);
 
-    dispatch(signupSuccess(data));
-    token.set(data.token);
+    dispatch(signupSuccess(data.data));
+    // token.set(data.token);
 
-    return data;
+    return data.data;
   } catch (error) {
     dispatch(signupError(error.message));
   }

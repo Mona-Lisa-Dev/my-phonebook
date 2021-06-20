@@ -11,9 +11,9 @@ import * as authActions from 'redux/auth/auth-actions';
 import styles from './SignUpPage.module.scss';
 
 const SignUpPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('Lena'); //todo очистить
+  const [email, setEmail] = useState('elena.hlihan@gmail.com'); //todo очистить
+  const [password, setPassword] = useState('12345678'); //todo очистить
   const [agreed, setAgreed] = useState(false);
 
   const inputRef = useRef();
