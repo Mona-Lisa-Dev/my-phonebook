@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification the first test 1`] = `
+<div>
+  <p
+    class="notice"
+  >
+    Oops
+  </p>
+</div>
+`;

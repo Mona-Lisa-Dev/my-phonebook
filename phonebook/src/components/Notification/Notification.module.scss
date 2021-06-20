@@ -1,0 +1,14 @@
+.Notification {
+  margin: 20px 10px;
+  text-align: center;
+}
+
+.error {
+  @extend .Notification;
+  color: red;
+}
+
+.notice {
+  @extend .Notification;
+  color: black;
+}

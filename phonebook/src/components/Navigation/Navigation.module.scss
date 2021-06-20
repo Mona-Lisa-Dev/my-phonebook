@@ -1,0 +1,80 @@
+.Navigation {
+  display: flex;
+  // justify-content: space-between;
+  justify-content: center;
+  align-items: flex-end;
+
+  // padding: 20px;
+  // border-radius: 8px;
+}
+
+.NavLink,
+.LogoLink {
+  padding: 10px;
+
+  border-radius: 8px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow: 7px 7px 13px 0px rgba(0, 0, 0, 0.38);
+  }
+}
+
+.LogoLink {
+  width: 150px;
+
+  @media screen and (min-width: 601px) {
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 10px;
+  }
+}
+
+.NavLink {
+  width: 150px;
+  text-align: center;
+
+  color: #225c4a;
+}
+
+.LogoLinkActive {
+  box-shadow: 7px 7px 13px 0px rgba(0, 0, 0, 0.38);
+
+  &:hover {
+    background-image: linear-gradient(
+      120deg,
+      rgba(35, 57, 135, 0.3) 0%,
+      rgba(66, 159, 71, 0.3) 100%
+    );
+  }
+}
+
+.NavLinkActive {
+  background-image: linear-gradient(
+    120deg,
+    rgba(35, 57, 135, 0.7) 0%,
+    rgba(66, 159, 71, 0.7) 100%
+  );
+
+  color: #ffffff;
+
+  &:hover {
+    box-shadow: 7px 7px 13px 0px rgba(0, 0, 0, 0.38);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Navigation {
+    flex-direction: column;
+  }
+
+  .LogoLink {
+    width: 100px;
+  }
+
+  .NavLink {
+    width: 100px;
+  }
+}
