@@ -77,7 +77,7 @@ const login = async (req, res, next) => {
       });
     }
 
-    const { subscription } = user;
+    const { name, subscription } = user;
 
     const payload = { id: user.id };
     const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '2h' });
@@ -87,7 +87,7 @@ const login = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { token, user: { email, subscription } },
+      data: { token, user: { name, email, subscription } },
     });
   } catch (error) {
     next(error);
@@ -110,7 +110,9 @@ const getCurrentUser = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { name, email, subscription, avatarURL },
+      data: {
+        user: { name, email, subscription, avatarURL },
+      },
     });
   } catch (error) {
     next(error);
@@ -128,7 +130,9 @@ const updateSubscriptionUser = async (req, res, next) => {
       return res.status(HttpCode.OK).json({
         status: 'success',
         code: HttpCode.OK,
-        data: { name, email, subscription },
+        data: {
+          user: { name, email, subscription },
+        },
       });
     } else {
       return next({
