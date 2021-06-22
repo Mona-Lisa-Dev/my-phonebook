@@ -13,8 +13,8 @@ const schemaAddContact = Joi.object({
       minDomainSegments: 2,
       tlds: { allow: ['com', 'net', 'ua'] },
     })
-    .required(),
-  phone: Joi.string().min(10).max(14).required(),
+    .optional(),
+  number: Joi.string().min(10).max(14).required(),
   favorite: Joi.boolean().optional(),
 });
 
@@ -30,7 +30,7 @@ const schemaUpdateContact = Joi.object({
       tlds: { allow: ['com', 'net', 'ua'] },
     })
     .optional(),
-  phone: Joi.string().min(10).max(14).optional(),
+  number: Joi.string().min(10).max(14).optional(),
   favorite: Joi.boolean().optional(),
 }).min(1);
 

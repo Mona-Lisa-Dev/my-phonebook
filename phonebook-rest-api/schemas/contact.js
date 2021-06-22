@@ -13,7 +13,7 @@ const contactSchema = new Schema(
     email: {
       type: String,
     },
-    phone: {
+    number: {
       type: String,
       minlength: 10,
       maxlength: 14,

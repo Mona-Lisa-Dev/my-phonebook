@@ -1,7 +1,7 @@
 const newContact = {
   name: 'Kuku',
   email: 'kuku@gmail.com',
-  phone: '12345678908',
+  number: '12345678908',
   //   favorite: false,
 };
 

@@ -111,7 +111,10 @@ const getCurrentUser = async (req, res, next) => {
       status: 'success',
       code: HttpCode.OK,
       data: {
-        user: { name, email, subscription, avatarURL },
+        name,
+        email,
+        subscription,
+        avatarURL,
       },
     });
   } catch (error) {

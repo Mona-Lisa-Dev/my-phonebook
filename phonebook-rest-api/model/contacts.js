@@ -7,7 +7,7 @@ const listContacts = async (userId, query) => {
     page = 1,
     sortBy, // sortBy=name
     sortByDesc, // sortByDesc=name
-    filter, // filter=name|email|phone|favorite
+    filter, // filter=name|email|number|favorite
     favorite = null, // favorite=true
   } = query;
 
