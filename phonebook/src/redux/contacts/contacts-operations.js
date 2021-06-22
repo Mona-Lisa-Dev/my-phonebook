@@ -19,9 +19,9 @@ const fetchContacts = () => async dispatch => {
 
   try {
     const { data } = await axios.get('/contacts');
-    dispatch(fetchContactsSuccess(data));
+    dispatch(fetchContactsSuccess(data.data.contacts));
 
-    return data;
+    return data.data.contacts;
   } catch (error) {
     dispatch(fetchContactsError(error.message));
   }
@@ -29,13 +29,14 @@ const fetchContacts = () => async dispatch => {
 
 const addContact = (name, number) => async dispatch => {
   const contact = { name, number };
+
   dispatch(addContactRequest());
 
   try {
     const { data } = await axios.post('/contacts', contact);
-    dispatch(addContactSuccess(data));
+    dispatch(addContactSuccess(data.data.newContact));
 
-    return data;
+    return data.data.newContact;
   } catch (error) {
     dispatch(addContactError(error.message));
   }
@@ -48,7 +49,7 @@ const deleteContact = contactId => async dispatch => {
     const { data } = await axios.delete(`/contacts/${contactId}`);
     dispatch(deleteContactSuccess(contactId));
 
-    return data;
+    return data.data.contacts;
   } catch (error) {
     dispatch(deleteContactError(error.message));
   }
@@ -56,16 +57,31 @@ const deleteContact = contactId => async dispatch => {
 
 const updateContact = (id, updatedContact) => async dispatch => {
   dispatch(updateContactRequest());
+  console.log('updatedContact', updatedContact);
 
   try {
-    const { data } = await axios.patch(`/contacts/${id}`, updatedContact);
-    dispatch(updateContactSuccess(data));
+    const { data } = await axios.put(`/contacts/${id}`, updatedContact);
+    dispatch(updateContactSuccess(data.data.contact));
 
-    return data;
+    return data.data.contact;
   } catch (error) {
     dispatch(updateContactError(error.message));
   }
 };
+
+// const updateContact = (id, updatedContact) => async dispatch => {
+//   dispatch(updateContactRequest());
+//   console.log('updatedContact', updatedContact);
+
+//   try {
+//     const { data } = await axios.patch(`/contacts/${id}`, updatedContact);
+//     dispatch(updateContactSuccess(data.data.contact));
+
+//     return data.data.contact;
+//   } catch (error) {
+//     dispatch(updateContactError(error.message));
+//   }
+// };
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {

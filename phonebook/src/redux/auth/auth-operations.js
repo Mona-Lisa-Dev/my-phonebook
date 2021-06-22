@@ -14,7 +14,7 @@ import {
   getCurrentUserDataError,
 } from './auth-actions';
 
-axios.defaults.baseURL = 'https://my-phonebook-rest-api.herokuapp.com/api';
+axios.defaults.baseURL = 'https://my-phonebook-api.herokuapp.com/api';
 
 const token = {
   set(token) {
@@ -30,6 +30,9 @@ const signUp = payload => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/signup', payload);
+    // const result = await axios.post('/users/signup', payload);
+    // console.log('result', result);
+    // const { data } = result;
 
     dispatch(signupSuccess(data.data));
     // token.set(data.token);
@@ -46,10 +49,10 @@ const logIn = payload => async dispatch => {
   try {
     const { data } = await axios.post('/users/login', payload);
 
-    dispatch(loginSuccess(data));
-    token.set(data.token);
+    dispatch(loginSuccess(data.data));
+    token.set(data.data.token);
 
-    return data;
+    return data.data;
   } catch (error) {
     dispatch(loginError(error.message));
   }
@@ -81,9 +84,9 @@ const getCurrentUserData = () => async (dispatch, getState) => {
 
   try {
     const { data } = await axios.get('/users/current');
-    dispatch(getCurrentUserDataSuccess(data));
+    dispatch(getCurrentUserDataSuccess(data.data));
 
-    return data;
+    return data.data;
   } catch (error) {
     dispatch(getCurrentUserDataError(error.message));
   }
