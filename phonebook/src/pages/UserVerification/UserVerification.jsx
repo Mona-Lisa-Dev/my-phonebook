@@ -34,7 +34,7 @@ const UserVerification = ({ emailVerify }) => {
   };
 
   return (
-    <>
+    <div className={styles.verifyWrapper}>
       <p>
         Your profile requires verification. Please go to your email and confirm
         it.
@@ -58,7 +58,7 @@ const UserVerification = ({ emailVerify }) => {
         </button>
       </form>
       {repeatVerify && <Notification message={repeatVerify} />}
-    </>
+    </div>
   );
 };
 
