@@ -28,4 +28,8 @@ export const updateContactSuccess = createAction(
 );
 export const updateContactError = createAction('contacts/updateContactError');
 
+// export const updateContactStatusFavorite = createAction(
+//   'contacts/updateContactStatusFavorite',
+// );
+
 export const changeFilter = createAction('contacts/changeFilter');

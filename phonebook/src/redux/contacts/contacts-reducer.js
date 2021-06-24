@@ -15,6 +15,7 @@ import {
   updateContactSuccess,
   updateContactError,
   changeFilter,
+  // updateContactStatusFavorite,
 } from './contacts-actions';
 import { logoutSuccess } from 'redux/auth/auth-actions';
 
@@ -48,6 +49,10 @@ const loading = createReducer(false, {
   [updateContactError]: () => false,
 });
 
+// const isFavorite = createReducer(false, {
+//   [updateContactStatusFavorite]:
+// });
+
 const error = createReducer(null, {
   [fetchContactsError]: (_, { payload }) => payload,
   [fetchContactsRequest]: () => null,
@@ -64,4 +69,5 @@ export default combineReducers({
   filter: filterReducer,
   loading,
   error,
+  // isFavorite,
 });

@@ -22,4 +22,8 @@ export const getCurrentUserDataError = createAction(
   'auth/getCurrentUserDataError',
 );
 
+export const verifyRequest = createAction('auth/verifyRequest');
+export const verifySuccess = createAction('auth/verifySuccess');
+export const verifyError = createAction('auth/verifyError');
+
 export const clearError = createAction('auth/clearError');

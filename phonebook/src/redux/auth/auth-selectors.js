@@ -9,3 +9,6 @@ export const getErrorLogin = state => state.auth.errorLogin;
 // export const getErrorCurrentUserData = state => state.auth.errorCurrentUserData;
 
 export const getError = state => state.auth.error;
+
+export const getNeedVerify = state => state.auth.needVerify;
+export const getRepeatVerify = state => state.auth.repeatVerify;

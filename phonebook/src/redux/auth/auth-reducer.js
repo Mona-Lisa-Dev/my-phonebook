@@ -15,6 +15,9 @@ import {
   getCurrentUserDataSuccess,
   getCurrentUserDataError,
   clearError,
+  verifyRequest,
+  verifySuccess,
+  verifyError,
 } from './auth-actions';
 
 const initialUserState = { name: null, email: null };
@@ -34,7 +37,7 @@ const token = createReducer(null, {
 });
 
 const isAuthorized = createReducer(false, {
-  [signupSuccess]: () => true,
+  // [signupSuccess]: () => true,
   [loginSuccess]: () => true,
   [getCurrentUserDataSuccess]: () => true,
 
@@ -42,6 +45,19 @@ const isAuthorized = createReducer(false, {
   [loginError]: () => false,
   [getCurrentUserDataError]: () => false,
   [logoutRequest]: () => false,
+});
+
+const needVerify = createReducer(false, {
+  [clearError]: () => false,
+  [signupSuccess]: () => true,
+  [loginSuccess]: () => false,
+});
+
+const repeatVerify = createReducer(null, {
+  [signupRequest]: () => null,
+  [loginRequest]: () => null,
+  [verifyRequest]: () => null,
+  [verifySuccess]: (_, { payload }) => payload.message,
 });
 
 const isLoading = createReducer(false, {
@@ -105,6 +121,8 @@ export default combineReducers({
   error,
   errorSignup,
   errorLogin,
+  needVerify,
+  repeatVerify,
   // errorLogout,
   // errorCurrentUserData,
 });

@@ -69,12 +69,14 @@ const updateContact = (id, updatedContact) => async dispatch => {
   }
 };
 
-// const updateContact = (id, updatedContact) => async dispatch => {
+// const updateContactFavorite = (id, updatedContact) => async dispatch => {
 //   dispatch(updateContactRequest());
-//   console.log('updatedContact', updatedContact);
 
 //   try {
-//     const { data } = await axios.patch(`/contacts/${id}`, updatedContact);
+//     const { data } = await axios.patch(
+//       `/contacts/${id}/favorite`,
+//       updatedContact,
+//     );
 //     dispatch(updateContactSuccess(data.data.contact));
 
 //     return data.data.contact;
@@ -89,4 +91,5 @@ export default {
   addContact,
   deleteContact,
   updateContact,
+  // updateContactFavorite,
 };

@@ -3,9 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from 'components/Container';
 import Notification from 'components/Notification';
 import Loader from 'components/Loader';
+import UserVerification from 'pages/UserVerification';
 
 import authOperations from 'redux/auth/auth-operations';
-import { getLoadingUser, getErrorSignup } from 'redux/auth/auth-selectors';
+import {
+  getNeedVerify,
+  getLoadingUser,
+  getErrorSignup,
+} from 'redux/auth/auth-selectors';
 import * as authActions from 'redux/auth/auth-actions';
 
 import styles from './SignUpPage.module.scss';
@@ -16,15 +21,21 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('12345678'); //todo очистить
   const [agreed, setAgreed] = useState(false);
 
+  // const [needVerify, setNeedVerify] = useState(false);
+
   const inputRef = useRef();
 
   const error = useSelector(getErrorSignup);
   const isLoadingUser = useSelector(getLoadingUser);
+  const needVerify = useSelector(getNeedVerify);
 
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(authActions.clearError()), [dispatch]);
-  useEffect(() => inputRef.current.focus(), []);
+  useEffect(() => {
+    inputRef?.current?.focus();
+    // setEmail('');
+  }, []);
 
   const handleChange = event => {
     const { name, value, checked } = event.currentTarget;
@@ -57,12 +68,14 @@ const SignUpPage = () => {
     const user = { name, email, password };
     dispatch(authOperations.signUp(user));
 
+    // setNeedVerify(true);
+
     reset();
   };
 
   const reset = () => {
     setName('');
-    setEmail('');
+    // setEmail('');
     setPassword('');
     setAgreed(false);
   };
@@ -70,7 +83,21 @@ const SignUpPage = () => {
   return (
     <Container>
       {isLoadingUser && <Loader />}
-      {error && <Notification message={error} type="error" />}
+      {error === 'Request failed with status code 401' && (
+        <UserVerification emailVerify={email} />
+      )}
+      {error === 'Request failed with status code 409' && (
+        <Notification message={'This email is already in use'} type="error" />
+      )}
+      {error === 'Request failed with status code 400' && (
+        <Notification
+          message={
+            'Your IP has reached the account creation limit within an hour, please try again later'
+          }
+          type="error"
+        />
+      )}
+      {needVerify && <UserVerification emailVerify={email} />}
 
       <form
         className={styles.SignUpForm}

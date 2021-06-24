@@ -12,9 +12,13 @@ import {
   getCurrentUserDataRequest,
   getCurrentUserDataSuccess,
   getCurrentUserDataError,
+  verifyRequest,
+  verifySuccess,
+  verifyError,
 } from './auth-actions';
 
-axios.defaults.baseURL = 'https://my-phonebook-api.herokuapp.com/api';
+// axios.defaults.baseURL = 'https://my-phonebook-api.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const token = {
   set(token) {
@@ -30,12 +34,9 @@ const signUp = payload => async dispatch => {
 
   try {
     const { data } = await axios.post('/users/signup', payload);
-    // const result = await axios.post('/users/signup', payload);
-    // console.log('result', result);
-    // const { data } = result;
+    console.log('data', data);
 
     dispatch(signupSuccess(data.data));
-    // token.set(data.token);
 
     return data.data;
   } catch (error) {
@@ -92,10 +93,26 @@ const getCurrentUserData = () => async (dispatch, getState) => {
   }
 };
 
+// payload -> email
+const repeatVerification = payload => async dispatch => {
+  dispatch(verifyRequest());
+
+  try {
+    const { data } = await axios.post('/users/verify', payload);
+    console.log('data', data);
+    dispatch(verifySuccess(data));
+
+    return data;
+  } catch (error) {
+    dispatch(verifyError(error.message));
+  }
+};
+
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
   signUp,
   logIn,
   logOut,
   getCurrentUserData,
+  repeatVerification,
 };

@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from 'components/Container';
 import Notification from 'components/Notification';
 import Loader from 'components/Loader';
+import UserVerification from 'pages/UserVerification';
 
+// import { getNeedVerify } from 'redux/auth/auth-selectors';
 import authOperations from 'redux/auth/auth-operations';
 import { getLoadingUser, getErrorLogin } from 'redux/auth/auth-selectors';
 import * as authActions from 'redux/auth/auth-actions';
@@ -16,6 +18,8 @@ const LoginPage = () => {
 
   const error = useSelector(getErrorLogin);
   const isLoadingUser = useSelector(getLoadingUser);
+
+  // const needVerify = useSelector(getNeedVerify);
 
   const inputRef = useRef();
 
@@ -51,14 +55,21 @@ const LoginPage = () => {
   };
 
   const reset = () => {
-    setEmail('');
+    // setEmail('');
     setPassword('');
   };
 
   return (
     <Container>
       {isLoadingUser && <Loader />}
-      {error && <Notification message={error} type="error" />}
+      {/* {needVerify && <UserVerification emailVerify={email} />} */}
+      {error === 'Request failed with status code 404' && (
+        <UserVerification emailVerify={email} />
+      )}
+      {error === 'Request failed with status code 401' && (
+        <Notification message={'Email or password is wrong'} type="error" />
+      )}
+      {/* {error && <Notification message={error} type="error" />} */}
 
       <form
         className={styles.SignUpForm}

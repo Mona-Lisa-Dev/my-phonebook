@@ -15,7 +15,7 @@ const AppBar = ({ theme, themeToggler }) => {
   return (
     <div className={styles.AppBar}>
       <Navigation />
-      <div>
+      <div className={styles.authNavWrapper}>
         <ThemeButton theme={theme} themeToggler={themeToggler} />
         {isAuthorized ? <UserMenu /> : <AuthNav />}
       </div>
