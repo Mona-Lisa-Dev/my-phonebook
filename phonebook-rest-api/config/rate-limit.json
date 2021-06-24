@@ -5,7 +5,7 @@
   },
   "createAccountLimit": {
     "windowMs": 3600000,
-    "max": 2
+    "max": 10
   },
   "jsonLimit": 15000,
   "fileSizeLimit": 2000000

@@ -23,11 +23,20 @@ cloudinary.config({
 const signup = async (req, res, next) => {
   try {
     const user = await usersModel.findByEmail(req.body.email);
+    console.log('user', user);
 
-    if (user) {
+    if (user && user.verify) {
       return next({
         status: HttpCode.CONFLICT,
         message: 'Email in use',
+      });
+    }
+
+    if (user && !user.verify) {
+      return next({
+        status: HttpCode.UNAUTHORIZED,
+        message:
+          'Your profile requires verification. Please go to your email and confirm it',
       });
     }
 
